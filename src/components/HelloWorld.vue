@@ -1,43 +1,80 @@
-<template>
+<template v-slot:helloworld>
+    Replaces slot-scope from Vue 2, used for named slots in templates.
   <div class="hello">
+    In Vue 3, v-model can accept arguments to bind multiple props with different names.
     <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+    <h1>{{ value1 }}</h1>
+    <h1>{{ value2 }}</h1>
+    <br />
+    <p v-cloak>
+      Keep the element and its children hidden until Vue's compilation is done. {{ message }}
     </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    Dynamically bind one or more attributes, or a component prop, to an expression.
+    Shorthand: :
+
+    <p><a v-bind:href="url">Link</a>
+      <!-- or using shorthand -->
+      <a :href="url">Link</a>
+    </p>
+    <p v-show="isVisible">You can see me</p>
+    Attach event listeners that invoke methods on Vue instances.
+    <button @click="handleButton">Click me</button>
+
+
+    <p v-if="type === 'A'">Type A</p>
+    <p v-else-if="type === 'B'">Type B</p>
+    <p v-else>Other Type</p>
+    <p><span v-pre>Skip compilation for this element and all its children. {{ this will not be compiled }}</span></p>
+   <div>
+    Render the element and component once and skip future updates.
+    <p v-once>This will never change: {{ message }}</p>
+    <a target="_blank" rel="noopener" @click="handleButton">vue-cli documentation</a>
+
+    <div v-if="seen">Hello Compoonent</div>
+    <div v-else>else Component</div>
+
+    <div>
+      <ul v-if="lists.length > 0">
+        <li v-for="val in lists" :key="val.id" @click="handleButton">
+          {{ val.text }}
+        </li>
+        <br />
+      </ul>
+    </div>
+    <div>The v-model directive binds a form input element (like input, textarea, select)</div>
+  </div>
+
   </div>
 </template>
-
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
-  }
-}
+    msg: String,
+    value1: String,
+    value2: String,
+  },
+  data() {
+    return {
+      url: "https://vuejs.org",
+      seen: true,
+      message: "Mounted",
+      type: 'A',
+      lists: [
+        { id: 1, text: "Item 1" },
+        { id: 2, text: "Item 2" },
+        { id: 3, text: "Item 3" },
+      ],
+    };
+  },
+  methods: {
+    handleButton() {
+      console.log("Hello---");
+    },
+  },
+};
 </script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
