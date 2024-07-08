@@ -1,7 +1,10 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
+  <router-link to="/lists">Go to Lists</router-link>
+  <router-link to="/custome">Go to Custome</router-link>
   <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <Lists/>
+  
+  
   <custom-input v-model:title="title" v-model:content="content" @childEvent="handleEvent" ref="childComp"></custom-input>
   
   <div><button @click="accessChild">Child property access</button></div>
@@ -9,8 +12,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue';
-import CustomInput from './components/CustomInput.vue'
-import Lists from './components/Lists/ListsComponent.vue'
+import CustomInput from './components/ChildCustomInput.vue'
 import { ref } from 'vue';
 export default {
   data(){
@@ -22,7 +24,7 @@ export default {
   },
   name: 'App',
   components: {
-    HelloWorld,CustomInput,Lists
+    HelloWorld,CustomInput
   },
   methods:{
     handleEvent(data){

@@ -28,7 +28,7 @@
   } from "vue";
   import Details from "./Details.vue";
   export default {
-    name: "HelloWorld",
+    name: "ListsComponent",
     props: {
       msg: String,
     },

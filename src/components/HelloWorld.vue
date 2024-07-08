@@ -42,11 +42,31 @@
       </ul>
     </div>
     <div>The v-model directive binds a form input element (like input, textarea, select)</div>
+
+    <div>Create a Store
+      Create a store using Pinia.</div>
   </div>
 
   </div>
 </template>
 <script>
+//src/stores/counter.js
+import { defineStore } from 'pinia';
+
+export const useCounterStore = defineStore('counter', {
+  state: () => ({
+    count: 0
+  }),
+  actions: {
+    increment() {
+      this.count++;
+    },
+    decrement() {
+      this.count--;
+    }
+  }
+});
+
 export default {
   name: "HelloWorld",
   props: {
